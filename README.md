@@ -1,5 +1,7 @@
 # prettier
 
+[![Build Status](https://travis-ci.org/tanishiking/prettier.svg?branch=master)](https://travis-ci.org/tanishiking/prettier)
+
 ## Overview
 
 prettier is an implementation of
