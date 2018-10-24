@@ -72,6 +72,17 @@ func be(width int, k uint, x []*document) chunk {
 		}
 	} else if v, ok := x[0].doc.(*union); ok {
 		i := x[0].col
+		// Since it is redundant to caluculate if the first candidate fits
+		// if (w - k) < 0, check if w - k < 0 and if it is true,
+		// skip the caluculation and caluculate second candidate.
+		if (width - int(k) < 0) {
+			second := be(
+				width,
+				k,
+				append([]*document{&document{col: i, doc: v.b}}, x[1:]...),
+			)
+			return second
+		}
 		first := be(
 			width,
 			k,
