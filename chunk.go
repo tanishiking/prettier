@@ -29,8 +29,9 @@ func (e *emptyChunk) String() string {
 }
 
 type textChunk struct {
-	str string
-	c   chunk
+	str       string
+	strLength int
+	c         chunk
 }
 
 func (t *textChunk) layout() string {
@@ -41,7 +42,7 @@ func (t *textChunk) fits(width int) bool {
 	if width < 0 {
 		return false
 	}
-	return t.c.fits(width - len([]rune(t.str)))
+	return t.c.fits(width - t.strLength)
 }
 
 func (t *textChunk) String() string {

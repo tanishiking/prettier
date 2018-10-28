@@ -50,10 +50,11 @@ func be(width int, k uint, x []*document) chunk {
 		)
 	} else if v, ok := x[0].doc.(*text); ok {
 		s := v.str
-		chunk := be(width, k+uint(len([]rune(s))), x[1:])
+		chunk := be(width, k+uint(v.length), x[1:])
 		return &textChunk{
-			str: s,
-			c:   chunk,
+			str:       s,
+			strLength: v.length,
+			c:         chunk,
 		}
 	} else if v, ok := x[0].doc.(*nest); ok {
 		i := x[0].col
@@ -75,7 +76,7 @@ func be(width int, k uint, x []*document) chunk {
 		// Since it is redundant to caluculate if the first candidate fits
 		// if (w - k) < 0, check if w - k < 0 and if it is true,
 		// skip the caluculation and caluculate second candidate.
-		if (width - int(k) < 0) {
+		if width-int(k) < 0 {
 			second := be(
 				width,
 				k,

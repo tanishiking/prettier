@@ -27,10 +27,12 @@ func TestEmptyChunkFits(t *testing.T) {
 
 func TestTextChunkLayout(t *testing.T) {
 	chunk := &textChunk{
-		str: "foo",
+		str:       "foo",
+		strLength: 3,
 		c: &textChunk{
-			str: "bar",
-			c:   &emptyChunk{},
+			str:       "bar",
+			c:         &emptyChunk{},
+			strLength: 3,
 		},
 	}
 	actual := chunk.layout()
@@ -42,10 +44,12 @@ func TestTextChunkLayout(t *testing.T) {
 
 func TestTextChunkFits(t *testing.T) {
 	chunk := &textChunk{
-		str: "foo",
+		str:       "foo",
+		strLength: 3,
 		c: &textChunk{
-			str: "bar",
-			c:   &emptyChunk{},
+			str:       "bar",
+			strLength: 3,
+			c:         &emptyChunk{},
 		},
 	}
 	fit := chunk.fits(6)
@@ -58,8 +62,9 @@ func TestLineChunkLayout(t *testing.T) {
 	chunk := &lineChunk{
 		indent: uint(2),
 		c: &textChunk{
-			str: "bar",
-			c:   &emptyChunk{},
+			str:       "bar",
+			strLength: 3,
+			c:         &emptyChunk{},
 		},
 	}
 	actual := chunk.layout()

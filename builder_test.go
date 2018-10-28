@@ -17,7 +17,15 @@ func TestEmpty(t *testing.T) {
 
 func TestText(t *testing.T) {
 	doc := Text("test")
-	expected := &text{str: "test"}
+	expected := &text{str: "test", length: len([]rune("test"))}
+	if !reflect.DeepEqual(doc, expected) {
+		t.Errorf("expected: %v, actual: %v", expected, doc)
+	}
+}
+
+func TestTextWithLength(t *testing.T) {
+	doc := TextWithLength("test", 1)
+	expected := &text{str: "test", length: 1}
 	if !reflect.DeepEqual(doc, expected) {
 		t.Errorf("expected: %v, actual: %v", expected, doc)
 	}
@@ -47,12 +55,12 @@ func TestConcat(t *testing.T) {
 	// concat should be right associated
 	doc := Concat([]Doc{Text("a"), Text("b"), Text("c"), Text("d")})
 	expected := &concat{
-		a: &text{str: "a"},
+		a: Text("a"),
 		b: &concat{
-			a: &text{str: "b"},
+			a: Text("b"),
 			b: &concat{
-				a: &text{str: "c"},
-				b: &text{str: "d"},
+				a: Text("c"),
+				b: Text("d"),
 			},
 		},
 	}
