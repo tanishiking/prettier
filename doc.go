@@ -21,7 +21,8 @@ func (e *empty) flattenBool() (Doc, bool) {
 }
 
 type text struct {
-	str string
+	str    string
+	length int
 }
 
 func (t *text) String() string {
@@ -43,7 +44,7 @@ func (l *line) String() string {
 func (l *line) flattenBool() (Doc, bool) {
 	var flattened Doc
 	if l.flattenToSpace {
-		flattened = &text{str: " "}
+		flattened = Text(" ")
 	} else {
 		flattened = &empty{}
 	}

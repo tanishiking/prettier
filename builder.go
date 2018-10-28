@@ -13,7 +13,17 @@ func Empty() Doc {
 // The string must not be empty, and may not contain newlines.
 func Text(str string) Doc {
 	return &text{
-		str: str,
+		str:    str,
+		length: len([]rune(str)),
+	}
+}
+
+// TextWithLength represents string whose length is strLength.
+// This is useful for string that contains invisible characters like ansi color.
+func TextWithLength(str string, strLength int) Doc {
+	return &text{
+		str:    str,
+		length: strLength,
 	}
 }
 
@@ -100,9 +110,7 @@ func Spaces(n uint) Doc {
 	if n < 1 {
 		return &empty{}
 	}
-	return &text{
-		str: strings.Repeat(" ", int(n)),
-	}
+	return Text(strings.Repeat(" ", int(n)))
 }
 
 // Group treats the specified doc as a group that can be compressed.

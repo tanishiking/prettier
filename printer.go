@@ -50,7 +50,7 @@ func be(width int, k uint, x []*document) chunk {
 		)
 	} else if v, ok := x[0].doc.(*text); ok {
 		s := v.str
-		chunk := be(width, k+uint(len([]rune(s))), x[1:])
+		chunk := be(width, k+uint(v.length), x[1:])
 		return &textChunk{
 			str: s,
 			c:   chunk,
