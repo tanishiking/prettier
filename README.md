@@ -1,6 +1,7 @@
 # prettier
 
-[![Build Status](https://travis-ci.org/tanishiking/prettier.svg?branch=master)](https://travis-ci.org/tanishiking/prettier)
+[![test](https://github.com/tanishiking/prettier/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/tanishiking/prettier/actions/workflows/ci.yml)
+
 
 ## Overview
 
@@ -19,7 +20,7 @@ import (
 
     p "github.com/tanishiking/prettier"
 )
-
+j
 func main() {
     sep := p.Concat([]p.Doc{p.Text(","), p.LineOrSpace()})
     ds := []p.Doc{
