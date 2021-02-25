@@ -7,6 +7,11 @@
 prettier is an implementation of
 [Wadler's "A Prettier Printer"](http://homepages.inf.ed.ac.uk/wadler/papers/prettier/prettier.pdf).
 
+## Install
+```sh
+$ go get -u github.com/tanishiking/prettier
+```
+
 ## Usage
 ```go
 import (
