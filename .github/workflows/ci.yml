@@ -2,9 +2,9 @@ name: test
 
 on:
   push:
-    paths:
-    - '**.go'
-    - '.github/workflows/ci.yml'
+    branches:
+      - master
+  pull_request:
 
 jobs:
   test:
