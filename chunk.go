@@ -18,10 +18,7 @@ func (e *emptyChunk) layout() string {
 }
 
 func (e *emptyChunk) fits(width int) bool {
-	if width < 0 {
-		return false
-	}
-	return true
+	return width >= 0
 }
 
 func (e *emptyChunk) String() string {
@@ -39,10 +36,10 @@ func (t *textChunk) layout() string {
 }
 
 func (t *textChunk) fits(width int) bool {
-	if width < 0 {
-		return false
+	if width >= 0 {
+		return t.c.fits(width - t.strLength)
 	}
-	return t.c.fits(width - t.strLength)
+	return false
 }
 
 func (t *textChunk) String() string {
@@ -59,10 +56,7 @@ func (l *lineChunk) layout() string {
 }
 
 func (l *lineChunk) fits(width int) bool {
-	if width < 0 {
-		return false
-	}
-	return true
+	return width >= 0
 }
 
 func (l *lineChunk) String() string {
