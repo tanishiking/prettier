@@ -1,0 +1,22 @@
+name: test
+
+on:
+  push:
+    paths:
+    - '**.go'
+    - '.github/workflows/ci.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Go
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.15
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Lint
+        run: make lint
+      - name: Test
+        run: make test
